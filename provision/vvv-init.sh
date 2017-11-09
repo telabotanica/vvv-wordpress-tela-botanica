@@ -25,13 +25,28 @@ if [[ ! -d "${VVV_PATH_TO_SITE}/public_html" ]]; then
 
   echo "Configuring WordPress Stable..."
   noroot wp core config --dbname=wordpress_tb --dbuser=wp --dbpass=wp --quiet --extra-php <<PHP
-// Match any requests made via xip.io.
-if ( isset( \$_SERVER['HTTP_HOST'] ) && preg_match('/^(local.tela-botanica.)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(.xip.io)\z/', \$_SERVER['HTTP_HOST'] ) ) {
-    define( 'WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] );
-    define( 'WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] );
-}
+/* Écrase la valeur précédente */
+$table_prefix = ''; // on utilise un préfixe vide pour l'instant, mais ça changera car c'est plutôt pas standard
 
-define( 'WP_DEBUG', true );
+/* Voir https://codex.wordpress.org/Debugging_in_WordPress */
+define( 'WP_DEBUG', false );
+define('SAVEQUERIES', false);
+
+/* Algolia Plugin config */
+define( 'ALGOLIA_APPLICATION_ID', 'YOTVBFEBJC' );
+define( 'ALGOLIA_SEARCH_API_KEY', '0f5505db53e8068dcf35481db4d0fe8c' );
+define( 'ALGOLIA_ADMIN_API_KEY', '' ); // secret
+define( 'ALGOLIA_PREFIX', '' ); // secret
+
+// Empêche une page /projets/toto de rediriger vers une page /toto lorsque cette dernière existe
+// Voir https://wpml.org/forums/topic/buddypress-pages-redirected-to-other-pages/
+define('BPML_USE_VERBOSE_PAGE_RULES', true);
+
+// Si HTTPS activé sur le serveur, décommenter ici pour forcer le HTTPS
+// Voir : https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Site-specific-self-signed-SSL-certificates
+// define('FORCE_SSL_ADMIN', true);
+// $_SERVER['HTTPS'] = 'on';
+
 PHP
 
   echo "Installing WordPress Stable..."
