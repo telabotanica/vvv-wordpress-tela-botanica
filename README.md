@@ -37,6 +37,7 @@ utilities:
     - cumulus
     - cumulus-front
     - php-mailparse
+    - bower
     - ezmlm-php
     - ezmlm-forum
     - chorologie
