@@ -36,6 +36,7 @@ utilities:
     - annuaire
     - cumulus
     - cumulus-front
+    - php-mailparse
     - ezmlm-php
     - ezmlm-forum
     - chorologie
