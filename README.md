@@ -42,6 +42,8 @@ utilities:
     - ezmlm-forum
     - chorologie
     - eflore-consultation
+    - sshpass
+    - wordmove
 
 utility-sources:
   tb: https://github.com/telabotanica/vvv-utilities-tela-botanica
