@@ -26,7 +26,7 @@ if [[ ! -d "${VVV_PATH_TO_SITE}/public_html" ]]; then
   echo "Configuring WordPress Stable..."
   noroot wp core config --dbname=wordpress_tb --dbuser=wp --dbpass=wp --quiet --extra-php <<PHP
 /* Écrase la valeur précédente */
-$table_prefix = ''; // on utilise un préfixe vide pour l'instant, mais ça changera car c'est plutôt pas standard
+\$table_prefix = ''; // on utilise un préfixe vide pour l'instant, mais ça changera car c'est plutôt pas standard
 
 /* Voir https://codex.wordpress.org/Debugging_in_WordPress */
 define( 'WP_DEBUG', false );
@@ -45,7 +45,7 @@ define('BPML_USE_VERBOSE_PAGE_RULES', true);
 // Si HTTPS activé sur le serveur, décommenter ici pour forcer le HTTPS
 // Voir : https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Site-specific-self-signed-SSL-certificates
 // define('FORCE_SSL_ADMIN', true);
-// $_SERVER['HTTPS'] = 'on';
+// \$_SERVER['HTTPS'] = 'on';
 
 PHP
 

@@ -13,8 +13,9 @@ Requires recent versions of both Vagrant and VirtualBox.
 
 [Vagrant](https://www.vagrantup.com) is a "tool for building and distributing development environments". It works with [virtualization](https://en.wikipedia.org/wiki/X86_virtualization) software such as [VirtualBox](https://www.virtualbox.org/) to provide a virtual machine sandboxed from your local environment.
 
-1. Clone a fresh [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV)
-1. Create a `vvv-custom.yml` as:
+1. Clone a fresh [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV), rename it and
+1. Create a `vvv-custom.yml` (see example below)
+1. Run `vagrant up`
 
 ```yml
 sites:
