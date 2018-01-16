@@ -63,6 +63,7 @@ utilities:
     - eflore-consultation
     - sshpass
     - wordmove
+    - trusted-hosts
 
 utility-sources:
   tb: https://github.com/telabotanica/vvv-utilities-tela-botanica
