@@ -34,9 +34,9 @@ define('SAVEQUERIES', false);
 
 /* Algolia Plugin config */
 define( 'ALGOLIA_APPLICATION_ID', 'YOTVBFEBJC' );
-define( 'ALGOLIA_SEARCH_API_KEY', '0f5505db53e8068dcf35481db4d0fe8c' );
+define( 'ALGOLIA_SEARCH_API_KEY', '442cb6359a614188171442a6966c7a2c' );
 define( 'ALGOLIA_ADMIN_API_KEY', 'secret' );
-define( 'ALGOLIA_PREFIX', 'secret' );
+define( 'ALGOLIA_PREFIX', 'killian_' );
 
 // Empêche une page /projets/toto de rediriger vers une page /toto lorsque cette dernière existe
 // Voir https://wpml.org/forums/topic/buddypress-pages-redirected-to-other-pages/
