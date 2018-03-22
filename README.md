@@ -16,10 +16,10 @@ Requires recent versions of both Vagrant and VirtualBox.
 ### Install dev env
 1. Clone a fresh [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV) in a SOME-DEV-FOLDER folder
 1. Create a `vvv-custom.yml` (see example below)
+1. Install required plugins `vagrant plugin install vagrant-hostsupdater vagrant-triggers vagrant-vbguest`
 1. Run `vagrant up` and go get a hot drink
 
 ### Loads some data
-1. Install required plugins `vagrant plugin install vagrant-hostsupdater vagrant-triggers vagrant-vbguest`
 1. Get in `vagrant ssh`
 1. Go to Wordpress dir `cd /srv/www/tela-botanica/public_html`
 1. Create a `movefile.yml` (see example below)
