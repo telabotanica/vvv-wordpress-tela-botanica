@@ -50,7 +50,7 @@ define('BPML_USE_VERBOSE_PAGE_RULES', true);
 PHP
 
   echo "Installing WordPress Stable..."
-  noroot wp core install --url=local.tela-botanica.dev --quiet --title="Local WordPress Dev" --admin_name=admin --admin_email="admin@local.dev" --admin_password="password"
+  noroot wp core install --url=local.tela-botanica.test --quiet --title="Local WordPress Dev" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
 
 else
 
