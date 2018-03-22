@@ -26,6 +26,10 @@ Requires recent versions of both Vagrant and VirtualBox.
 1. Run `wordmove pull -e preprod --all [--no-uploads] [--simulate]` (`--no-uploads` saves some time and disk, and `--simulate` do dry-run to check config)
 1. Done! Browse [local.tela-botanica.test](http://local.tela-botanica.test)
 
+### One more thing/fix
+1. Fix wrong apps symlinks in `~/SOME-DEV-FOLDER/www/tela-botanica/public_html/wp-content/plugins/tela-botanica`
+1. Fix wrong services url and cookie name in [wp-admin](http://local.tela-botanica.test/wp-admin). (SSO, Tela Botanica, Applis externes)
+
 ### Break some code
 1. `subl ~/SOME-DEV-FOLDER/www/tela-botanica/public_html/wp-content/plugins/tela-botanica`
 1. `subl ~/SOME-DEV-FOLDER/www/tela-botanica/public_html/wp-content/themes/tela-botanica`
