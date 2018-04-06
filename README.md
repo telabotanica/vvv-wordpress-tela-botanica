@@ -111,7 +111,7 @@ preprod:
     rsync_options: "--verbose" # Additional rsync options, optional
 
   exclude:
-    #- ".git/"
+    - ".git/"
     - ".htaccess"
     #- ".gitignore"
     - ".sass-cache/"
@@ -141,7 +141,7 @@ test:
     rsync_options: "--verbose" # Additional rsync options, optional
 
   exclude:
-    #- ".git/"
+    - ".git/"
     - ".htaccess"
     #- ".gitignore"
     - ".sass-cache/"
