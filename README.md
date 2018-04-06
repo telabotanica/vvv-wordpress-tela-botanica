@@ -36,7 +36,7 @@ Requires recent versions of both Vagrant and VirtualBox.
 1. And so on
 
 ## Examples
-You can use these examples as is. Just replace `password-placeholder` by proper passwords.
+You can use these examples as is. Just replace `PASSWORD-PLACEHOLDER` by proper passwords.
 
 ### vvv-custom.yml
 ```yml
@@ -100,14 +100,14 @@ preprod:
   database:
     name: "wordpress"
     user: "wordpress"
-    password: "password-placeholder"
+    password: "PASSWORD-PLACEHOLDER"
     host: "localhost"
 
   ssh:
     host: "aphyllanthe"
     user: "beta"
-    password: "password-placeholder" # password is optional, will use public keys if available.
-    port: 22 # Port is optional
+    password: "PASSWORD-PLACEHOLDER"
+    port: 22
     rsync_options: "--verbose" # Additional rsync options, optional
 
   exclude:
@@ -130,14 +130,14 @@ test:
   database:
     name: "wordpress_test"
     user: "wordpress"
-    password: "password-placeholder"
+    password: "PASSWORD-PLACEHOLDER"
     host: "localhost"
 
   ssh:
     host: "aphyllanthe"
     user: "beta"
-    password: "password-placeholder" # password is optional, will use public keys if available.
-    port: 22 # Port is optional
+    password: "PASSWORD-PLACEHOLDER"
+    port: 22
     rsync_options: "--verbose" # Additional rsync options, optional
 
   exclude:
