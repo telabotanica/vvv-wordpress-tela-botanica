@@ -104,7 +104,7 @@ preprod:
     host: "localhost"
 
   ssh:
-    host: "aphyllanthe"
+    host: "prive.aphyllanthe.tela-botanica.net"
     user: "beta"
     password: "PASSWORD-PLACEHOLDER"
     port: 22
@@ -134,7 +134,7 @@ test:
     host: "localhost"
 
   ssh:
-    host: "aphyllanthe"
+    host: "prive.aphyllanthe.tela-botanica.net"
     user: "beta"
     password: "PASSWORD-PLACEHOLDER"
     port: 22
