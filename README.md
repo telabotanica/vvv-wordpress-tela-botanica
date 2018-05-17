@@ -153,3 +153,29 @@ test:
     - "wp-config.php"
     - "wp-content/*.sql.gz"
 ```
+
+## Known issues
+### Mailcatcher
+#### CRLF thing
+
+Error: `SMTP To address may not contain CR or LF line breaks`
+
+Workaround:
+```
+/usr/bin/env rvm default@mailcatcher --create do gem uninstall mail
+/usr/bin/env rvm default@mailcatcher --create do gem install mail --version 2.6.6
+```
+
+#### EOF thing
+
+Error: `/usr/local/rvm/gems/ruby-2.4.1@mailcatcher/bin/ruby_executable_hooks: end of file reached (EOFError)`
+
+Workaround:
+
+Add `/usr/bin/env` to sendmail path
+```
+#/etc/php/7.0/mods-available/mailcatcher.ini
+sendmail_path = "/usr/bin/env /usr/local/rvm/bin/catchmail -f admin@local.dev"
+```
+
+Don't forget to `service php7.0-fpm reload`
