@@ -16,7 +16,7 @@ Requires recent versions of both Vagrant and VirtualBox.
 ### Install dev env
 1. Clone a fresh [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV) in a SOME-DEV-FOLDER folder
 1. Create a `vvv-custom.yml` (see example below)
-1. Install required plugins `vagrant plugin install vagrant-hostsupdater vagrant-triggers vagrant-vbguest`
+1. Install required plugins `vagrant plugin install vagrant-hostsupdater vagrant-vbguest`
 1. Run `vagrant up` and go get a hot drink
 
 ### Loads some data
