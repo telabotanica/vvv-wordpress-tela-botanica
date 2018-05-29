@@ -35,6 +35,11 @@ Requires recent versions of both Vagrant and VirtualBox.
 1. `subl ~/SOME-DEV-FOLDER/www/tela-botanica/public_html/wp-content/themes/tela-botanica`
 1. And so on
 
+### Upgrade VVV
+1. Something like `git pull; vagrant reload --provision` should suffice
+1. If not, gently perform `vagrant reload --provision` for each missed release tag
+1. Just in case, keep an eye on [the upgrade doc](https://varyingvagrantvagrants.org/docs/en-US/installation/keeping-up-to-date/)
+
 ## Examples
 You can use these examples as is. Just replace `PASSWORD-PLACEHOLDER` by proper passwords.
 
