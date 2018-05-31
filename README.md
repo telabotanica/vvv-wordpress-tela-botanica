@@ -27,7 +27,6 @@ Requires recent versions of both Vagrant and VirtualBox.
 1. Done! Browse [local.tela-botanica.test](http://local.tela-botanica.test)
 
 ### One more thing/fix
-1. Fix wrong apps symlinks in `~/SOME-DEV-FOLDER/www/tela-botanica/public_html/wp-content/plugins/tela-botanica`
 1. Fix wrong services url and cookie name in [wp-admin](http://local.tela-botanica.test/wp-admin). (SSO, Tela Botanica, Applis externes)
 
 ### Break some code
@@ -128,6 +127,17 @@ preprod:
     - "wp-config.php"
     - "wp-content/*.sql.gz"
 
+  hooks:
+    pull:
+      after:
+        local:
+          - 'echo "DO: Replace imported tools symlink with proper local target"'
+          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
+          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
+          - 'ln -s /srv/www/cumulus-front/app/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
+          - 'ln -s /srv/www/ezmlm-forum/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
+          - 'echo "DONE: Replace imported tools symlink with proper local target"'
+
 test:
   vhost: "https://beta.tela-botanica.org/test"
   wordpress_path: "/home/beta/www/test" # use an absolute path here
@@ -157,6 +167,17 @@ test:
     - "movefile.yml"
     - "wp-config.php"
     - "wp-content/*.sql.gz"
+
+  hooks:
+    pull:
+      after:
+        local:
+          - 'echo "DO: Replace imported tools symlink with proper local target"'
+          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
+          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
+          - 'ln -s /srv/www/cumulus-front/app/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
+          - 'ln -s /srv/www/ezmlm-forum/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
+          - 'echo "DONE: Replace imported tools symlink with proper local target"'
 ```
 
 ## Known issues
