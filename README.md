@@ -24,7 +24,7 @@ Requires recent versions of both Vagrant and VirtualBox.
 1. Go to Wordpress dir `cd /srv/www/tela-botanica/public_html`
 1. Create a `movefile.yml` (see example below)
 1. Run `wordmove pull -e preprod --all [--no-uploads] [--simulate]` (`--no-uploads` saves some time and disk, and `--simulate` do dry-run to check config)
-1. Done! Browse [local.tela-botanica.test](http://local.tela-botanica.test)
+1. Done! Browse [local.tela-botanica.test](https://local.tela-botanica.test)
 
 ### One more thing/fix
 1. Fix wrong services url and cookie name in [wp-admin](http://local.tela-botanica.test/wp-admin). (SSO, Tela Botanica, Applis externes)
@@ -57,6 +57,7 @@ utilities:
     - phpmyadmin
     - webgrind
     - trusted-hosts
+    - tls-ca
   tb:
     - tb-framework
     - tb-framework-0.2
