@@ -89,7 +89,7 @@ global:
   sql_adapter: "wpcli"
 
 local:
-  vhost: "http://local.tela-botanica.test"
+  vhost: "https://local.tela-botanica.test"
   wordpress_path: "/srv/www/tela-botanica/public_html" # use an absolute path here
 
   database:
@@ -98,24 +98,24 @@ local:
     password: "wp"
     host: "localhost"
 
-preprod:
-  vhost: "https://beta.tela-botanica.org/preprod"
-  wordpress_path: "/home/beta/www/preprod" # use an absolute path here
+default: &default
+  vhost: "https://beta.tela-botanica.org"
+  wordpress_path: "/home/beta/www"
 
-  database:
+  database: &db
     name: "wordpress"
     user: "wordpress"
     password: "PASSWORD-PLACEHOLDER"
     host: "localhost"
 
-  ssh:
+  ssh: &ssh
     host: "prive.aphyllanthe.tela-botanica.net"
     user: "beta"
     password: "PASSWORD-PLACEHOLDER"
     port: 22
     rsync_options: "--verbose" # Additional rsync options, optional
 
-  exclude:
+  exclude: &exclude
     - ".git/"
     - ".htaccess"
     #- ".gitignore"
@@ -128,57 +128,82 @@ preprod:
     - "wp-config.php"
     - "wp-content/*.sql.gz"
 
-  hooks:
-    pull:
-      after:
-        local:
-          - 'echo "DO: Replace imported tools symlink with proper local target"'
-          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
-          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
-          - 'ln -s /srv/www/cumulus-front/app/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
-          - 'ln -s /srv/www/ezmlm-forum/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
-          - 'echo "DONE: Replace imported tools symlink with proper local target"'
+  forbid: &forbid
+    push:
+      uploads: true
+      themes: true
+      plugins: true
+      mu-plugins: true
+      languages: true
+      db: true
 
-test:
-  vhost: "https://beta.tela-botanica.org/test"
-  wordpress_path: "/home/beta/www/test" # use an absolute path here
+preprod:
+  <<: *default
+  vhost: "https://beta.tela-botanica.org/preprod"
+  wordpress_path: "/home/beta/www/preprod"
 
   database:
-    name: "wordpress_test"
-    user: "wordpress"
-    password: "PASSWORD-PLACEHOLDER"
-    host: "localhost"
+    *db
 
   ssh:
-    host: "prive.aphyllanthe.tela-botanica.net"
-    user: "beta"
-    password: "PASSWORD-PLACEHOLDER"
-    port: 22
-    rsync_options: "--verbose" # Additional rsync options, optional
+    *ssh
 
   exclude:
-    - ".git/"
-    - ".htaccess"
-    #- ".gitignore"
-    - ".sass-cache/"
-    - "node_modules/"
-    - "bin/"
-    - "tmp/*"
-    - "Gemfile*"
-    - "movefile.yml"
-    - "wp-config.php"
-    - "wp-content/*.sql.gz"
+    *exclude
 
   hooks:
     pull:
       after:
         local:
-          - 'echo "DO: Replace imported tools symlink with proper local target"'
+          - 'echo "START: Replace imported tools symlink with proper local target"'
           - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
           - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
           - 'ln -s /srv/www/cumulus-front/app/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
           - 'ln -s /srv/www/ezmlm-forum/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
-          - 'echo "DONE: Replace imported tools symlink with proper local target"'
+          - 'echo "START: Replace some config in Wordpress database"'
+          - 'wp search-replace "vpopmail.tela-botanica.org\/ezmlm-php-ng" "api.tela-botanica.test\/ezmlm-php" table "options" --no-report'
+          - 'wp search-replace "beta.tela-botanica.org\/service:" "api.tela-botanica.test\/service:" table "options" --no-report'
+          - 'wp search-replace "beta.tela-botanica.org" "local.tela-botanica.test" table "options" --no-report'
+          - 'wp search-replace "api.tela-botanica.org" "api.tela-botanica.test" table "options" --no-report'
+          - 'wp search-replace "tb_auth_beta_preprod" "tb_auth_local_dev" table "options" --no-report'
+
+  forbid:
+    *forbid
+
+test:
+  <<: *default
+  vhost: "https://beta.tela-botanica.org/test"
+  wordpress_path: "/home/beta/www/test"
+
+  database:
+    <<: *db
+    name: "wordpress_test"
+
+  ssh:
+    *ssh
+
+  exclude:
+    *exclude
+
+  hooks:
+    pull:
+      after:
+        local:
+          - 'echo "START: Replace imported tools symlink with proper local target"'
+          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
+          - 'unlink /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
+          - 'ln -s /srv/www/cumulus-front/app/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/porte-documents'
+          - 'ln -s /srv/www/ezmlm-forum/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
+          - 'echo "START: Replace some config in Wordpress database"'
+          - 'wp search-replace "vpopmail.tela-botanica.org\/ezmlm-php-ng" "api.tela-botanica.test\/ezmlm-php" table "options" --no-report'
+          - 'wp search-replace "beta.tela-botanica.org\/service:annuaire-test" "api.tela-botanica.test\/service:annuaire" table "options" --no-report'
+          - 'wp search-replace "beta.tela-botanica.org\/service:" "api.tela-botanica.test\/service:" table "options" --no-report'
+          - 'wp search-replace "beta.tela-botanica.org" "local.tela-botanica.test" table "options" --no-report'
+          - 'wp search-replace "api.tela-botanica.org" "api.tela-botanica.test" table "options" --no-report'
+          - 'wp search-replace "tb_auth_beta_preprod" "tb_auth_local_dev" table "options" --no-report'
+
+  forbid:
+    *forbid
 ```
 
 ## Known issues
