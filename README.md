@@ -127,6 +127,7 @@ default: &default
     - "movefile.yml"
     - "wp-config.php"
     - "wp-content/*.sql.gz"
+    - ".ruby-version"
 
   forbid: &forbid
     push:
