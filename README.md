@@ -64,7 +64,6 @@ utilities:
     - annuaire
     - cumulus
     - cumulus-front
-    - php-mailparse
     - bower
     - ezmlm-php
     - ezmlm-forum
@@ -73,6 +72,7 @@ utilities:
     - sshpass
     - wordmove
     - trusted-hosts
+    - php-extensions
 
 utility-sources:
   tb: https://github.com/telabotanica/vvv-utilities-tela-botanica
