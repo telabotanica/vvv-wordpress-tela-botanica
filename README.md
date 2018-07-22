@@ -128,6 +128,7 @@ default: &default
     - "wp-config.php"
     - "wp-content/*.sql.gz"
     - ".ruby-version"
+    - "IMG/"
 
   forbid: &forbid
     push:
