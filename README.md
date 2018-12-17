@@ -49,6 +49,7 @@ sites:
     repo: https://github.com/telabotanica/vvv-wordpress-tela-botanica.git
     hosts:
       - local.tela-botanica.test
+      - api.tela-botanica.test
 
 utilities:
   core:
