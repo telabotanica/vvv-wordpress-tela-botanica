@@ -199,7 +199,7 @@ test:
           - 'ln -s /srv/www/ezmlm-forum/ /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum'
           - 'echo "START: Replace some config in Wordpress database"'
           - 'wp search-replace "vpopmail.tela-botanica.org\/ezmlm-php-ng" "api.tela-botanica.test\/ezmlm-php" table "options" --no-report'
-          - 'wp search-replace "beta.tela-botanica.org\/service:annuaire-test" "api.tela-botanica.test\/service:annuaire" table "options" --no-report'
+          - 'wp search-replace "beta.tela-botanica.org\/service:annuaire" "api.tela-botanica.test\/service:annuaire" table "options" --no-report'
           - 'wp search-replace "beta.tela-botanica.org\/service:" "api.tela-botanica.test\/service:" table "options" --no-report'
           - 'wp search-replace "beta.tela-botanica.org" "local.tela-botanica.test" table "options" --no-report'
           - 'wp search-replace "api.tela-botanica.org" "api.tela-botanica.test" table "options" --no-report'
