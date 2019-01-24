@@ -87,49 +87,57 @@ vm_config:
 ### movefile.yml
 ```yml
 global:
-  sql_adapter: "wpcli"
+  sql_adapter: wpcli
 
 local:
-  vhost: "https://local.tela-botanica.test"
-  wordpress_path: "/srv/www/tela-botanica/public_html" # use an absolute path here
+  vhost: https://local.tela-botanica.test
+  wordpress_path: /srv/www/tela-botanica/public_html # use an absolute path here
 
   database:
-    name: "wordpress_tb"
-    user: "wp"
-    password: "wp"
-    host: "localhost"
+    name: wordpress_tb
+    user: wp
+    password: wp
+    host: localhost
 
 default: &default
-  vhost: "https://beta.tela-botanica.org"
-  wordpress_path: "/home/beta/www"
+  vhost: https://beta.tela-botanica.org
+  wordpress_path: /home/beta/www # use an absolute path here
 
   database: &db
-    name: "wordpress"
-    user: "wordpress"
-    password: "PASSWORD-PLACEHOLDER"
-    host: "localhost"
+    name: wordpress
+    user: wordpress
+    password: "PASSWORD-PLACEHOLDER" # could be blank, so always use quotes around
+    host: localhost
 
   ssh: &ssh
-    host: "prive.aphyllanthe.tela-botanica.net"
-    user: "beta"
-    password: "PASSWORD-PLACEHOLDER"
+    host: prive.aphyllanthe.tela-botanica.net
+    user: beta
+    password: PASSWORD-PLACEHOLDER
     port: 22
-    rsync_options: "--verbose" # Additional rsync options, optional
+    rsync_options: '--verbose' # Additional rsync options, optional
 
   exclude: &exclude
-    - ".git/"
-    - ".htaccess"
-    #- ".gitignore"
-    - ".sass-cache/"
-    - "node_modules/"
-    - "bin/"
-    - "tmp/*"
-    - "Gemfile*"
-    - "movefile.yml"
-    - "wp-config.php"
-    - "wp-content/*.sql.gz"
-    - ".ruby-version"
-    - "IMG/"
+    - '.git/'
+    #- '.gitignore'
+    - '.gitmodules'
+    - '.env'
+    - 'node_modules/'
+    - 'bin/'
+    - 'tmp/*'
+    - 'Gemfile*'
+    - 'Movefile'
+    - 'movefile'
+    - 'movefile.yml'
+    - 'movefile.yaml'
+    - 'wp-config.php'
+    - 'wp-content/*.sql.gz'
+    - '*.orig'
+    - '.sass-cache/'
+    - 'wp-config.php*'
+    - 'movefile.yml*'
+    - '.ruby-version'
+    - 'IMG/'
+    - '.htaccess'
 
   forbid: &forbid
     push:
@@ -142,8 +150,8 @@ default: &default
 
 preprod:
   <<: *default
-  vhost: "https://beta.tela-botanica.org/preprod"
-  wordpress_path: "/home/beta/www/preprod"
+  vhost: https://beta.tela-botanica.org/preprod
+  wordpress_path: /home/beta/www/preprod
 
   database:
     *db
@@ -175,12 +183,12 @@ preprod:
 
 test:
   <<: *default
-  vhost: "https://beta.tela-botanica.org/test"
-  wordpress_path: "/home/beta/www/test"
+  vhost: https://beta.tela-botanica.org/test
+  wordpress_path: /home/beta/www/test
 
   database:
     <<: *db
-    name: "wordpress_test"
+    name: wordpress_test
 
   ssh:
     *ssh
